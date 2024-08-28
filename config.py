@@ -3,15 +3,15 @@ import torch
 
 config = {
     "env":{
-        "ip": "", # enter internal IP
-        "port": ""}, # enter port
+        "ip": "10.244.244.177", # enter internal IP
+        "port": "5000"}, # enter port
     
     "paths": {
-        "metadata_path": "../data/metadata.parquet",
-        "speech_path": "../data/speech",
-        "noise_path": "../data/noise", # "../data/noise" | None
+        "metadata_path": "/mnt/persistent/metadata.parquet",
+        "speech_path": "/mnt/persistent/ambisonics",
+        "noise_path": "/mnt/persistent/noise",
         "save_dir": "../data/preprocessed",
-        "model_path": "../pretrained_models/best_model.pth", # cnn_gcc_hilbert_20_46.pth | crnn_gcc_hilbert_21_37.pth | snn_gcc_hilbert_32_66 | srnn_gcc_hilbert_32_58.pth
+        "model_path": "/home/ubuntu/Desktop/cnn_gcc_hilbert_20_46.pth", # cnn_gcc_hilbert_20_46.pth | crnn_gcc_hilbert_21_37.pth | snn_gcc_hilbert_32_66 | srnn_gcc_hilbert_32_58.pth
     },
     
     
@@ -33,7 +33,7 @@ config = {
         "batch_size": 32,
         "num_workers": 16,
         "use_snn": False,
-        "model_type": "CRNN", # "CNN", "CRNN", "SNN", "SRNN"
+        "model_type": "CNN", # "CNN", "CRNN", "SNN", "SRNN"
         "num_steps": 4,
         "dropout_rates": [0.2, 0.2, 0.2, 0.5, 0.5, 0.5, 0.3, 0.2], # [0.2, 0.2, 0.2, 0.5, 0.5, 0.5, 0.3, 0.2]
         "thresholds": [1.0] * 8,
