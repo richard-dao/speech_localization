@@ -71,13 +71,14 @@ class TernaryLeaky(nn.Module):
 
         if not self.mem.shape == input_.shape:
             self.mem = torch.zeros_like(input_, device=self.mem.device)
-
-        self.mem = self.beta.clamp(0, 1) * self.mem + input_
+        
+        spk = torch.zeros_like(self.mem)
+        abs_prev_spk = torch.abs(spk)
+        self.mem = self.beta.clamp(0, 1) * self.mem  * (1 - abs_prev_spk) + input_
 
         if self.state_quant:
             self.mem = self.state_quant(self.mem)
 
-        spk = torch.zeros_like(self.mem)
         spk[self.mem > self.threshold_positive] = 1.0
         spk[self.mem < self.threshold_negative] = -1.0
 
