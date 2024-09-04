@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 import snntorch as snn
+from Neurons import TernaryLeaky
 from config import config
 
 class SNN(nn.Module):
@@ -18,21 +19,21 @@ class SNN(nn.Module):
             nn.BatchNorm2d(24),
             nn.MaxPool2d(2),
             nn.Dropout2d(self.dropout_rates[0]),
-            snn.Leaky(beta=self.betas[0], threshold=self.thresholds[0], learn_beta=True, learn_threshold=True, init_hidden=True),
+            TernaryLeaky(beta=self.betas[0], threshold_positive=1.0, threshold_negative=-1.0, learn_beta=True, learn_threshold=True, init_hidden=True),
             
 
             nn.Conv2d(24, 48, kernel_size=3, padding=1),
             nn.BatchNorm2d(48),
             nn.MaxPool2d(2),
             nn.Dropout2d(self.dropout_rates[1]),
-            snn.Leaky(beta=self.betas[1], threshold=self.thresholds[1], learn_beta=True, learn_threshold=True, init_hidden=True),
+            TernaryLeaky(beta=self.betas[1], threshold_positive=1.0, threshold_negative=-1.0, learn_beta=True, learn_threshold=True, init_hidden=True),
             
 
             nn.Conv2d(48, 96, kernel_size=3, padding=1),
             nn.BatchNorm2d(96),
             nn.MaxPool2d(2),
             nn.Dropout2d(self.dropout_rates[2]),
-            snn.Leaky(beta=self.betas[2], threshold=self.thresholds[2], learn_beta=True, learn_threshold=True, init_hidden=True),
+            TernaryLeaky(beta=self.betas[2], threshold_positive=1.0, threshold_negative=-1.0, learn_beta=True, learn_threshold=True, init_hidden=True),
             
 
             nn.Flatten()
@@ -45,27 +46,27 @@ class SNN(nn.Module):
             nn.Linear(self.feature_size, self.feature_size//32),
             nn.BatchNorm1d(self.feature_size//32),
             nn.Dropout(self.dropout_rates[3]),
-            snn.Leaky(beta=self.betas[3], threshold=self.thresholds[3], learn_beta=True, learn_threshold=True, init_hidden=True),
+            TernaryLeaky(beta=self.betas[3], threshold_positive=1.0, threshold_negative=-1.0, learn_beta=True, learn_threshold=True, init_hidden=True),
             
             nn.Linear(self.feature_size//32, self.feature_size//64),
             nn.BatchNorm1d(self.feature_size//64),
             nn.Dropout(self.dropout_rates[4]),
-            snn.Leaky(beta=self.betas[4], threshold=self.thresholds[4], learn_beta=True, learn_threshold=True, init_hidden=True),
+            TernaryLeaky(beta=self.betas[4], threshold_positive=1.0, threshold_negative=-1.0, learn_beta=True, learn_threshold=True, init_hidden=True),
             
             nn.Linear(self.feature_size//64, self.feature_size//128),
             nn.BatchNorm1d(self.feature_size//128),
             nn.Dropout(self.dropout_rates[5]),
-            snn.Leaky(beta=self.betas[5], threshold=self.thresholds[5], learn_beta=True, learn_threshold=True, init_hidden=True),
+            TernaryLeaky(beta=self.betas[5], threshold_positive=1.0, threshold_negative=-1.0, learn_beta=True, learn_threshold=True, init_hidden=True),
             
             nn.Linear(self.feature_size//128, self.feature_size//256),
             nn.BatchNorm1d(self.feature_size//256),
             nn.Dropout(self.dropout_rates[6]),
-            snn.Leaky(beta=self.betas[6], threshold=self.thresholds[6], learn_beta=True, learn_threshold=True, init_hidden=True),
+            TernaryLeaky(beta=self.betas[6], threshold_positive=1.0, threshold_negative=-1.0, learn_beta=True, learn_threshold=True, init_hidden=True),
             
             nn.Linear(self.feature_size//256, self.feature_size//512),
             nn.BatchNorm1d(self.feature_size//512),
             #nn.Dropout(self.dropout_rates[7]),
-            snn.Leaky(beta=self.betas[7], threshold=self.thresholds[7], learn_beta=True, learn_threshold=True, init_hidden=True),
+            TernaryLeaky(beta=self.betas[7], threshold_positive=1.0, threshold_negative=-1.0, learn_beta=True, learn_threshold=True, init_hidden=True),
             nn.Linear(self.feature_size//512, 2)  # Output layer for azimuth and elevation
         )
 
