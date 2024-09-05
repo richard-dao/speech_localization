@@ -3,7 +3,7 @@ import torch
 
 config = {
     "env":{
-        "ip": "10.244.244.177", # enter internal IP
+        "ip": "", # enter internal IP
         "port": "5000"}, # enter port
     
     "paths": {
@@ -30,10 +30,10 @@ config = {
     
     
     "model_config": {
-        "batch_size": 32,
+        "batch_size": 16,
         "num_workers": 16,
-        "use_snn": False,
-        "model_type": "CNN", # "CNN", "CRNN", "SNN", "SRNN"
+        "use_snn": True,
+        "model_type": "SNN", # "CNN", "CRNN", "SNN", "SRNN"
         "num_steps": 4,
         "dropout_rates": [0.2, 0.2, 0.2, 0.5, 0.5, 0.5, 0.3, 0.2], # [0.2, 0.2, 0.2, 0.5, 0.5, 0.5, 0.3, 0.2]
         "thresholds": [1.0] * 8,
@@ -45,7 +45,7 @@ config = {
     
     "training": {
         "is_lite": True,
-        "num_epochs": 100,
+        "num_epochs": 30,
         "device": "cuda" if torch.cuda.is_available() else "cpu",
         "val_size": 0.2,
         "learning_rate": 0.003,
