@@ -23,12 +23,12 @@ def train_func(model, dataloader, optimizer, loss_func, device, rank):
                 snn_utils.reset(model.features)
         
         outputs = model(features)
-        if i % 10 == 0:
+        if i % 100 == 0:
             print(outputs, labels)
         loss = loss_func(outputs, labels)
         loss.backward()
         optimizer.step()
-        if i % 10 == 0:
+        if i % 100 == 0:
             print(loss)
 
         total_loss += loss.item() * labels.size(0)
