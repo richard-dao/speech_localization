@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 import snntorch as snn
-from Neurons import TernaryLeaky
+from .Neurons.TernaryLeaky import TernaryLeaky
 from config import config
 
 class SNN(nn.Module):

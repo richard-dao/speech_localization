@@ -11,6 +11,7 @@ def train_func(model, dataloader, optimizer, loss_func, device, rank):
     total_loss = 0
     all_errors = []
 
+    i = 0
     for features, labels in tqdm(dataloader, desc='Training', leave=True, disable=rank != 0):
         features, labels = features.to(device), labels.to(device)
         optimizer.zero_grad()
@@ -22,9 +23,13 @@ def train_func(model, dataloader, optimizer, loss_func, device, rank):
                 snn_utils.reset(model.features)
         
         outputs = model(features)
+        if i % 10 == 0:
+            print(outputs, labels)
         loss = loss_func(outputs, labels)
         loss.backward()
         optimizer.step()
+        if i % 10 == 0:
+            print(loss)
 
         total_loss += loss.item() * labels.size(0)
         errors = calc_angular_errors(
