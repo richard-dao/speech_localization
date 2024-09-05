@@ -11,7 +11,7 @@ config = {
         "speech_path": "/mnt/persistent/ambisonics",
         "noise_path": "/mnt/persistent/noise",
         "save_dir": "../data/preprocessed",
-        "model_path": "/home/ubuntu/Desktop/cnn_gcc_hilbert_20_46.pth", # cnn_gcc_hilbert_20_46.pth | crnn_gcc_hilbert_21_37.pth | snn_gcc_hilbert_32_66 | srnn_gcc_hilbert_32_58.pth
+        "model_path": "./cnn_gcc_hilbert_20_46.pth", # cnn_gcc_hilbert_20_46.pth | crnn_gcc_hilbert_21_37.pth | snn_gcc_hilbert_32_66 | srnn_gcc_hilbert_32_58.pth
     },
     
     
