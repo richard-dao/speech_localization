@@ -32,8 +32,8 @@ config = {
     "model_config": {
         "batch_size": 16,
         "num_workers": 16,
-        "use_snn": True,
-        "model_type": "SNN", # "CNN", "CRNN", "SNN", "SRNN"
+        "use_snn": False,
+        "model_type": "CNN", # "CNN", "CRNN", "SNN", "SRNN"
         "num_steps": 4,
         "dropout_rates": [0.2, 0.2, 0.2, 0.5, 0.5, 0.5, 0.3, 0.2], # [0.2, 0.2, 0.2, 0.5, 0.5, 0.5, 0.3, 0.2]
         "thresholds": [1.0] * 8,
